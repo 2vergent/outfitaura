@@ -10,6 +10,7 @@ import {
   Col,
   Input,
   Button,
+  Segmented,
 } from "antd";
 import { ManOutlined, WomanOutlined } from "@ant-design/icons";
 import mock1 from "../assets/images/mock1.jpg";
@@ -104,7 +105,7 @@ const Homepage = () => {
       </Header>
       <Content className="homepage-content">
         <Row type="flex">
-          <Col span={12} align="left">
+          {/* <Col xs={24} sm={24} md={24} lg={12} align="left">
             <Row>
               <Col>
                 <span className="home-intro-text">OutfitAura,</span>
@@ -116,56 +117,84 @@ const Homepage = () => {
                 </span>
               </Col>
             </Row>
-          </Col>
-          <Col span={12} align="right">
-            <Carousel waitForAnimate dotPosition={"left"}>
-              {carouselImages.map((carousel, index) => (
-                <div>
-                  <h3 className="carousel-wrapper-main">
-                    <div
-                      className="carousel-wrapper"
-                      onMouseOver={() => setBannerHover(true)}
-                      onMouseLeave={() => setBannerHover(false)}
-                    >
-                      <Image
-                        src={carousel.image}
-                        preview={false}
-                        height={370}
-                        style={{ borderRadius: 20 }}
-                        className="carousel-image"
-                      />
-                      <div className="carousel-image-desc">
-                        <Row>
-                          <Col span={24} align="middle">
-                            <p className="carousel-text">{carousel.title}</p>
-                            <p className="carousel-text">{carousel.desc}</p>
-                          </Col>
-                          <Col span={2} offset={6}>
-                            <Button>Buy Now</Button>
-                          </Col>
-                        </Row>
+          </Col> */}
+          <Col span={24} align="center">
+            <Col xs={24} sm={24} md={24} lg={24} align="center">
+              <Carousel autoplay dotPosition={"left"}>
+                {carouselImages.map((carousel) => (
+                  <div>
+                    <h3 className="carousel-wrapper-main">
+                      <div
+                        className="carousel-wrapper"
+                        onMouseOver={() => setBannerHover(true)}
+                        onMouseLeave={() => setBannerHover(false)}
+                      >
+                        <Image
+                          src={carousel.image}
+                          preview={false}
+                          height={370}
+                          width={670}
+                          style={{ borderRadius: 20 }}
+                          className="carousel-image"
+                        />
+                        <div className="carousel-image-desc">
+                          <Row>
+                            <Col span={24} align="middle">
+                              <p className="carousel-text">{carousel.title}</p>
+                              <p className="carousel-text">{carousel.desc}</p>
+                            </Col>
+                            <Col span={2} offset={6}>
+                              <Button>Buy Now</Button>
+                            </Col>
+                          </Row>
+                        </div>
                       </div>
-                    </div>
-                  </h3>
-                </div>
-              ))}
-            </Carousel>
+                    </h3>
+                  </div>
+                ))}
+              </Carousel>
+            </Col>
           </Col>
         </Row>
-        <div className="new-arrival-text">
-          <p>New Arrivals</p>
-        </div>
-        <Row gutter={[0, 64]} type="flex">
+        {/* <Row>
+          <Col span={24} align="center">
+            <Col span={4}>
+              <div className="new-arrival-text">
+                <p>New Arrivals</p>
+              </div>
+            </Col>
+          </Col>
+        </Row> */}
+        <Row className="mt-10">
+          <Col span={24} align="center">
+            <Col sm={24} md={24} lg={12}>
+              <Segmented
+                id="homepage-segmented"
+                size="large"
+                block
+                options={[
+                  {
+                    label: "New Arrivals",
+                    value: "newArrivals",
+                  },
+                  {
+                    label: "Outgoing Trends",
+                    value: "outgoingTrends",
+                  },
+                  {
+                    label: "Trending",
+                    value: "trending",
+                  },
+                ]}
+              />
+            </Col>
+          </Col>
+        </Row>
+        <Row gutter={[64, 64]} type="flex" className="mt-30">
           {newArrivals.map((image, index) => {
             return (
-              <Col span={6} align="middle">
-                <Card
-                  hoverable
-                  style={{
-                    width: 240,
-                  }}
-                  cover={<Image alt="example" src={image} />}
-                >
+              <Col xs={24} sm={12} md={12} lg={6} align="middle">
+                <Card hoverable cover={<Image alt="example" src={image} />}>
                   <Meta
                     title={`${newArrivalDesc[index].title}`}
                     description={"Rs." + `${newArrivalDesc[index].price}`}
