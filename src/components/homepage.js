@@ -12,27 +12,24 @@ import {
   Button,
   Segmented,
 } from "antd";
-import { ManOutlined, WomanOutlined } from "@ant-design/icons";
-import mock1 from "../assets/images/mock1.jpg";
-import mock2 from "../assets/images/mock2.jpg";
-import mock3 from "../assets/images/mock3.jpg";
-import mock4 from "../assets/images/mock4.jpg";
-import mock5 from "../assets/images/mock5.jpg";
-import mock6 from "../assets/images/mock6.jpg";
-import mock7 from "../assets/images/mock7.jpg";
-import mock8 from "../assets/images/mock8.jpg";
-import banner1 from "../assets/images/banner1.jpg";
-import banner2 from "../assets/images/banner2.jpg";
-import banner3 from "../assets/images/banner3.jpg";
-import banner4 from "../assets/images/banner4.jpg";
+import {
+  ManOutlined,
+  WomanOutlined,
+  HomeFilled,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { newArrivals, newArrivalDesc, carouselImages } from "../utils/data";
 
 const { Header, Content, Footer } = Layout;
 const { Meta } = Card;
 
 const Homepage = () => {
-  const [bannerHover, setBannerHover] = useState(false);
-
   const items = [
+    {
+      key: "1",
+      label: "Home",
+      icon: <HomeFilled />,
+    },
     {
       key: "2",
       label: "Men",
@@ -45,90 +42,41 @@ const Homepage = () => {
     },
   ];
 
-  const newArrivals = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8];
-  const newArrivalDesc = [
-    { title: "Europe Street Beat", price: 1000 },
-    { title: "Asia Street Beat", price: 2000 },
-    { title: "America Street Beat", price: 3000 },
-    { title: "Africa Street Beat", price: 4000 },
-    { title: "Australia Street Beat", price: 5000 },
-    { title: "India Street Beat", price: 6000 },
-    { title: "Russia Street Beat", price: 7000 },
-    { title: "Antartica Street Beat", price: 8000 },
-  ];
-  const carouselImages = [
-    {
-      image: banner1,
-      title: "Classic Cotton Comfort Shirt",
-      desc: "Classic comfort meets timeless style in our cotton shirt. Perfect for any occasion, it effortlessly blends sophistication with ease.",
-    },
-    {
-      image: banner2,
-      title: "Urban Denim Casual",
-      desc: "Rugged denim meets urban coolness in this casual shirt. Versatile and stylish, it's your go-to for laid-back sophistication.",
-    },
-    {
-      image: banner3,
-      title: "Elegant Linen Blend",
-      desc: "Stay cool and elegant with our linen blend shirt. Ideal for warm days, it effortlessly combines comfort and sophistication.",
-    },
-    {
-      image: banner4,
-      title: "Bold Striped Statement",
-      desc: "Make a statement with bold stripes. This modern-fit shirt is for those who love standing out with confidence and style.",
-    },
-  ];
-
-  useEffect(() => {
-    console.log("BanneHover: ", bannerHover);
-  }, [bannerHover]);
-
   return (
     <Layout id="homepage-layout">
       <Header className="header">
         <Row type="flex">
-          <Col span={3} align="left">
+          <Col xs={6} sm={5} md={4} lg={3} align="left">
             <span className="logo-text">OutfitAura</span>
           </Col>
-          <Col span={5} align="left">
+          <Col xs={14} sm={15} md={16} lg={17} align="left">
             <Menu
+              id="homepage-menu"
               theme="dark"
               mode="horizontal"
               defaultSelectedKeys={["1"]}
               items={items}
             />
           </Col>
-          <Col span={16}>
-            <Input placeholder="Search"></Input>
+          <Col xs={4} sm={4} md={4} lg={4} align="right">
+            <Input
+              id="homepage-search"
+              prefix={<SearchOutlined style={{ color: "grey" }} />}
+              placeholder="Search"
+              allowClear
+            />
           </Col>
         </Row>
       </Header>
       <Content className="homepage-content">
         <Row type="flex">
-          {/* <Col xs={24} sm={24} md={24} lg={12} align="left">
-            <Row>
-              <Col>
-                <span className="home-intro-text">OutfitAura,</span>
-                <br />
-                <span className="home-intro-desc">
-                  Where style meets simplicity! Discover curated fashion that
-                  effortlessly blends comfort and chic. Embrace the ease of
-                  cool, everyday looks. Your wardrobe upgrade starts here!
-                </span>
-              </Col>
-            </Row>
-          </Col> */}
           <Col span={24} align="center">
             <Col xs={24} sm={24} md={24} lg={24} align="center">
-              <Carousel autoplay dotPosition={"left"}>
+              <Carousel id="homepage-carousel" autoplay dotPosition={"bottom"}>
                 {carouselImages.map((carousel) => (
                   <div>
                     <h3 className="carousel-wrapper-main">
-                      <div
-                        className="carousel-wrapper"
-                        onMouseOver={() => setBannerHover(true)}
-                        onMouseLeave={() => setBannerHover(false)}
-                      >
+                      <div className="carousel-wrapper">
                         <Image
                           src={carousel.image}
                           preview={false}
@@ -143,8 +91,13 @@ const Homepage = () => {
                               <p className="carousel-text">{carousel.title}</p>
                               <p className="carousel-text">{carousel.desc}</p>
                             </Col>
-                            <Col span={2} offset={6}>
-                              <Button>Buy Now</Button>
+                            <Col span={5} offset={6}>
+                              <Button
+                                id="homepage-buy-now"
+                                className="buy-now-btn"
+                              >
+                                Buy Now
+                              </Button>
                             </Col>
                           </Row>
                         </div>
@@ -156,16 +109,7 @@ const Homepage = () => {
             </Col>
           </Col>
         </Row>
-        {/* <Row>
-          <Col span={24} align="center">
-            <Col span={4}>
-              <div className="new-arrival-text">
-                <p>New Arrivals</p>
-              </div>
-            </Col>
-          </Col>
-        </Row> */}
-        <Row className="mt-10">
+        <Row className="mt-25">
           <Col span={24} align="center">
             <Col sm={24} md={24} lg={12}>
               <Segmented
