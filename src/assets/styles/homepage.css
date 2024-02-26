@@ -10,6 +10,7 @@
 #homepage-layout .header .logo-text {
   font-size: 25px;
   color: #fff;
+  cursor: pointer;
 }
 
 #homepage-layout #homepage-menu {
