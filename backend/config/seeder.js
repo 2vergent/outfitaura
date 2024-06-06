@@ -1,6 +1,5 @@
 require("dotenv").config({ path: "../.env" });
 const mongoose = require("mongoose");
-const { ObjectId } = require("mongodb");
 const Product = require("../models/productModel");
 
 const productNames = [
@@ -187,7 +186,6 @@ const isTrendings = [
 const products = [];
 for (let i = 0; i < productNames.length; i++) {
   const product = {
-    _id: new ObjectId(),
     product_name: productNames[i],
     product_type: productTypes[i],
     price: prices[i],
