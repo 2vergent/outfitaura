@@ -25,12 +25,18 @@ import NewArrivals from "./newarrivals";
 import Trending from "./trending";
 import Men from "../Men/men";
 import Women from "../Women/women";
+import {
+  getNewArrivalsProductsApi,
+  getTrendingProductsApi,
+} from "../../api/homepageApi";
 
 const { Header, Content, Footer } = Layout;
 
 const Homepage = () => {
   const [menuState, setMenuState] = useState("home");
   const [segmentedTab, setSegmentedTab] = useState("newArrivals");
+  const [newArrivalProducts, setNewArrivalProducts] = useState([]);
+  const [trendingProducts, setTrendingProducts] = useState([]);
 
   const headerItems = [
     {
@@ -49,6 +55,21 @@ const Homepage = () => {
       icon: <WomanOutlined />,
     },
   ];
+
+  useEffect(() => {
+    const fetchHomePageProducts = async () => {
+      await getNewArrivalsProductsApi().then((res) => {
+        console.log("newArrivalProducts: ", res);
+        setNewArrivalProducts(res);
+      });
+
+      await getTrendingProductsApi().then((res) => {
+        console.log("trendingRes: ", res);
+        setTrendingProducts(res);
+      });
+    };
+    fetchHomePageProducts();
+  }, []);
 
   return (
     <Layout id="homepage-layout">
@@ -161,9 +182,9 @@ const Homepage = () => {
               </Col>
               <Col span={24}>
                 {segmentedTab === "newArrivals" ? (
-                  <NewArrivals />
+                  <NewArrivals newArrivalProducts={newArrivalProducts} />
                 ) : (
-                  <Trending />
+                  <Trending trendingProducts={trendingProducts} />
                 )}
               </Col>
             </Row>
