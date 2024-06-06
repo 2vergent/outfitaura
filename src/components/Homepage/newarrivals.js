@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Image, Row, Col } from "antd";
-import { newArrivals, newArrivalDesc } from "../../utils/homepageData";
+import { newArrivals, newArrivalDesc } from "../../utils/homepageCatalog";
 
 const { Meta } = Card;
 

@@ -20,7 +20,7 @@ import {
   LoginOutlined,
   RiseOutlined,
 } from "@ant-design/icons";
-import { carouselImages } from "../../utils/homepageData";
+import { carouselImages } from "../../utils/homepageCatalog";
 import NewArrivals from "./newarrivals";
 import Trending from "./trending";
 import Men from "../Men/men";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Image, Row, Col } from "antd";
-import { trendingImages, trendingDesc } from "../../utils/homepageData";
+import { trendingImages, trendingDesc } from "../../utils/homepageCatalog";
 
 const { Meta } = Card;
 
