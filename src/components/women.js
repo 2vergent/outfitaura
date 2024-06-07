@@ -14,7 +14,6 @@ const Women = () => {
 
   useEffect(() => {
     getAllWomenProductsApi().then((res) => {
-      console.log("womenProducts: ", res);
       setWomenProducts(res);
     });
   }, []);
@@ -27,13 +26,16 @@ const Women = () => {
       <Content className="homepage-content">
         <Row gutter={[64, 64]} type="flex" className="mt-30">
           {womenProducts.map((product) => {
-            const imagePath = require(`../assets/images/${product.image_path}`);
             return (
               <Col xs={24} sm={12} md={12} lg={6} align="middle">
                 <Card
                   hoverable
-                  cover={<Image alt="example" src={imagePath} />}
-                  onClick={() => navigate("/product")}
+                  cover={<Image alt="example" src={product.image_path} />}
+                  onClick={() =>
+                    navigate("/product", {
+                      state: { product: product, menu: "3" },
+                    })
+                  }
                 >
                   <Meta
                     title={product.product_name}

@@ -1,15 +1,26 @@
+import "../assets/styles/header.css";
 import React, { useState } from "react";
-import { Row, Col, Menu, Input } from "antd";
+import { Row, Col, Menu, Input, Dropdown } from "antd";
 import {
   ManOutlined,
   WomanOutlined,
   HomeFilled,
   SearchOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 
 const Header = ({ selectedMenu }) => {
+  const navigate = useNavigate();
   const [menuKey, setMenuKey] = useState(selectedMenu);
+
+  const onLogOut = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   const headerItems = [
     {
       key: "1",
@@ -27,8 +38,20 @@ const Header = ({ selectedMenu }) => {
       icon: <WomanOutlined />,
     },
   ];
-
-  const navigate = useNavigate();
+  const items = [
+    {
+      key: "1",
+      label: (
+        <p
+          onClick={onLogOut}
+          style={{ fontWeight: 600, color: "red", padding: "0 10px" }}
+        >
+          Logout
+        </p>
+      ),
+      icon: <LogoutOutlined style={{ fontSize: 20 }} />,
+    },
+  ];
 
   return (
     <Row type="flex">
@@ -37,7 +60,7 @@ const Header = ({ selectedMenu }) => {
           OutfitAura
         </span>
       </Col>
-      <Col xs={14} sm={15} md={16} lg={17} align="left">
+      <Col xs={12} sm={13} md={14} lg={15} align="left">
         <Menu
           id="homepage-menu"
           theme="dark"
@@ -59,6 +82,22 @@ const Header = ({ selectedMenu }) => {
           placeholder="Search"
           allowClear
         />
+      </Col>
+      <Col span={1} align="right">
+        <ShoppingCartOutlined
+          onClick={() => navigate("/cart")}
+          className="cart-icon"
+        />
+      </Col>
+      <Col span={1} align="right">
+        <Dropdown
+          menu={{
+            items,
+          }}
+          trigger="click"
+        >
+          <UserOutlined className="cart-icon" />
+        </Dropdown>
       </Col>
     </Row>
   );

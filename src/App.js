@@ -7,6 +7,7 @@ import Homepage from "./components/homepage";
 import MenPage from "./components/men";
 import WomenPage from "./components/women";
 import ProductPage from "./components/productpage";
+import Cart from "./components/cart";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/men" element={<MenPage />} />
           <Route exact path="/women" element={<WomenPage />} />
           <Route exact path="/product" element={<ProductPage />} />
+          <Route exact path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </div>

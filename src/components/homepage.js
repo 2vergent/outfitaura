@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/homepage.css";
-import {
-  Layout,
-  Carousel,
-  Image,
-  Row,
-  Col,
-  Input,
-  Button,
-  Segmented,
-  Divider,
-} from "antd";
+import { Layout, Carousel, Image, Row, Col, Button, Segmented } from "antd";
 import { LoginOutlined, RiseOutlined } from "@ant-design/icons";
-import { carouselImages } from "../utils/homepageCatalog";
 import NewArrivals from "./newarrivals";
 import Trending from "./trending";
-import Men from "./men";
-import Women from "./women";
 import {
   getNewArrivalsProductsApi,
   getTrendingProductsApi,
@@ -25,8 +12,34 @@ import HeaderComponent from "./header";
 
 const { Header, Content, Footer } = Layout;
 
+const carouselImages = [
+  {
+    image:
+      "https://ucarecdn.com/54a94445-952b-428d-a75e-9d804e7de21c/banner1.jpg",
+    title: "Classic Cotton Comfort Shirt",
+    desc: "Classic comfort meets timeless style in our cotton shirt. Perfect for any occasion, it effortlessly blends sophistication with ease.",
+  },
+  {
+    image:
+      "https://ucarecdn.com/f92e0c57-134f-4dab-af23-e02eb8f46306/banner2.jpg",
+    title: "Urban Denim Casual",
+    desc: "Rugged denim meets urban coolness in this casual shirt. Versatile and stylish, it's your go-to for laid-back sophistication.",
+  },
+  {
+    image:
+      "https://ucarecdn.com/962dce6f-0431-4b13-85b3-aece3300cf9a/banner3.jpg",
+    title: "Elegant Linen Blend",
+    desc: "Stay cool and elegant with our linen blend shirt. Ideal for warm days, it effortlessly combines comfort and sophistication.",
+  },
+  {
+    image:
+      "https://ucarecdn.com/61a3510f-a31e-4e04-9c72-4e5d4cb375ac/banner4.jpg",
+    title: "Bold Striped Statement",
+    desc: "Make a statement with bold stripes. This modern-fit shirt is for those who love standing out with confidence and style.",
+  },
+];
+
 const Homepage = () => {
-  const [menuState, setMenuState] = useState("home");
   const [segmentedTab, setSegmentedTab] = useState("newArrivals");
   const [newArrivalProducts, setNewArrivalProducts] = useState([]);
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -34,12 +47,10 @@ const Homepage = () => {
   useEffect(() => {
     const fetchHomePageProducts = async () => {
       await getNewArrivalsProductsApi().then((res) => {
-        console.log("newArrivalProducts: ", res);
         setNewArrivalProducts(res);
       });
 
       await getTrendingProductsApi().then((res) => {
-        console.log("trendingRes: ", res);
         setTrendingProducts(res);
       });
     };
