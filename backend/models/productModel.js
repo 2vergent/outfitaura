@@ -10,6 +10,22 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  product_description: {
+    type: Object,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  rating_count: {
+    type: Number,
+    required: true,
+  },
+  original_price: {
+    type: Number,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,

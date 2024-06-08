@@ -14,3 +14,13 @@
   background: #1677ff;
   border-radius: 10px;
 }
+
+.cart-icon-active {
+  font-size: 30px;
+  margin-top: 12px;
+  cursor: pointer;
+  padding: 5px;
+  color: white;
+  background: #1677ff;
+  border-radius: 10px;
+}

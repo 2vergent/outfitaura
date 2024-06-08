@@ -21,13 +21,63 @@ const getProductsFromCart = async (req, res) => {
 };
 
 const addProductToCart = async (req, res) => {
-  const { productId, userId } = req.params;
+  const { productId, userId, quantity } = req.params;
   const addedProduct = await Cart.create({
     product_id: new ObjectId(productId),
     user_id: userId,
-    count: 1,
+    quantity: quantity,
   });
   res.send(addedProduct);
+};
+
+const removeProductFromCart = async (req, res) => {
+  const { productId, userId } = req.params;
+  const productToBeRemoved = await Cart.findOne({
+    product_id: productId,
+    user_id: userId,
+  }).exec();
+  if (productToBeRemoved) {
+    await Cart.deleteOne({ _id: productToBeRemoved._id });
+    res.send({ success: true });
+  } else {
+    res.send({ success: false });
+  }
+};
+
+const removeAllProductsFromCart = async (req, res) => {
+  const { userId } = req.params;
+  await Cart.deleteMany({ user_id: userId });
+  res.send({ success: true });
+};
+
+const incrementProductInCart = async (req, res) => {
+  const { productId, userId } = req.params;
+  let product = await Cart.findOne({
+    product_id: productId,
+    user_id: userId,
+  }).exec();
+  if (!product) {
+    res.send({ success: false });
+  } else {
+    product.quantity += 1;
+    await product.save();
+    res.send({ success: true });
+  }
+};
+
+const decrementProductInCart = async (req, res) => {
+  const { productId, userId } = req.params;
+  let product = await Cart.findOne({
+    product_id: productId,
+    user_id: userId,
+  }).exec();
+  if (!product) {
+    res.send({ success: false });
+  } else {
+    product.quantity -= 1;
+    await product.save();
+    res.send({ success: true });
+  }
 };
 
 const checkoutCart = async (req, res) => {
@@ -38,23 +88,30 @@ const checkoutCart = async (req, res) => {
       currency: "usd",
       product_data: {
         name: item.productDetail.product_name,
+        images: [item.productDetail.image_path],
       },
       unit_amount: item.productDetail.price,
     },
-    quantity: item.count,
+    quantity: item.quantity,
   }));
 
-  console.log("lineItems: ", lineItems);
-
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
+    payment_method_types: ["card", "cashapp", "amazon_pay"],
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:3000/payment/success",
-    cancel_url: "http://localhost:3000/payment/cancelled",
+    success_url: "http://localhost:3000/cart?payment=success",
+    cancel_url: "http://localhost:3000/cart?payment=failed",
   });
 
   res.send({ id: session.id });
 };
 
-module.exports = { getProductsFromCart, addProductToCart, checkoutCart };
+module.exports = {
+  getProductsFromCart,
+  addProductToCart,
+  removeProductFromCart,
+  removeAllProductsFromCart,
+  incrementProductInCart,
+  decrementProductInCart,
+  checkoutCart,
+};

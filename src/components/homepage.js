@@ -10,7 +10,7 @@ import {
 } from "../api/homepageApi";
 import HeaderComponent from "./header";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const carouselImages = [
   {
@@ -85,14 +85,6 @@ const Homepage = () => {
                               <p className="carousel-text">{carousel.title}</p>
                               <p className="carousel-text">{carousel.desc}</p>
                             </Col>
-                            <Col span={5} offset={6}>
-                              <Button
-                                id="homepage-buy-now"
-                                className="buy-now-btn"
-                              >
-                                Buy Now
-                              </Button>
-                            </Col>
                           </Row>
                         </div>
                       </div>
@@ -137,13 +129,6 @@ const Homepage = () => {
           </Col>
         </Row>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        OutfitAura
-      </Footer>
     </Layout>
   );
 };

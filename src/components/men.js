@@ -6,7 +6,7 @@ import HeaderComponent from "./header";
 import { getAllMenProductsApi } from "../api/menApi";
 
 const { Meta } = Card;
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const Men = () => {
   const navigate = useNavigate();
@@ -30,7 +30,13 @@ const Men = () => {
               <Col xs={24} sm={12} md={12} lg={6} align="middle">
                 <Card
                   hoverable
-                  cover={<Image alt="example" src={product.image_path} />}
+                  cover={
+                    <Image
+                      alt="example"
+                      preview={false}
+                      src={product.image_path}
+                    />
+                  }
                   onClick={() =>
                     navigate("/product", {
                       state: { product: product, menu: "2" },
@@ -47,13 +53,6 @@ const Men = () => {
           })}
         </Row>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        OutfitAura
-      </Footer>
     </Layout>
   );
 };

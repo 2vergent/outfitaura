@@ -1,3 +1,7 @@
+#homepage-layout {
+  height: 100vh;
+}
+
 #homepage-layout .header {
   position: sticky;
   top: 0;
@@ -8,7 +12,8 @@
 }
 
 #homepage-layout .header .logo-text {
-  font-size: 25px;
+  font-size: 20px;
+  font-weight: 600;
   color: #fff;
   cursor: pointer;
 }
@@ -38,6 +43,8 @@
 
 #homepage-layout .homepage-content {
   padding: 20px 48px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #homepage-layout #homepage-carousel {

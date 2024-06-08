@@ -1,0 +1,43 @@
+.product-card .ant-card-body {
+  padding: 15px 25px !important;
+}
+
+.product-card .ant-card-actions > li:first-child,
+.product-card .ant-card-actions > li:last-child {
+  width: 25% !important;
+}
+
+.product-card .ant-card-actions > li:nth-child(2) {
+  width: 50% !important;
+}
+
+.cart-button {
+  border-radius: 20px;
+  width: 100%;
+  height: 40px;
+}
+
+.back-button {
+  margin-top: 5px;
+  color: #8c8c8c;
+  font-size: 30px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: #1677ff;
+}
+
+.product-name {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.about-product {
+  width: 100% !important;
+}
+
+.about-product .ant-descriptions-row > th {
+  padding-bottom: 0px;
+}

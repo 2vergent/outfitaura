@@ -6,7 +6,7 @@ import { getAllWomenProductsApi } from "../api/womenApi";
 import { useNavigate } from "react-router";
 
 const { Meta } = Card;
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const Women = () => {
   const navigate = useNavigate();
@@ -30,7 +30,13 @@ const Women = () => {
               <Col xs={24} sm={12} md={12} lg={6} align="middle">
                 <Card
                   hoverable
-                  cover={<Image alt="example" src={product.image_path} />}
+                  cover={
+                    <Image
+                      alt="example"
+                      src={product.image_path}
+                      preview={false}
+                    />
+                  }
                   onClick={() =>
                     navigate("/product", {
                       state: { product: product, menu: "3" },
@@ -47,13 +53,6 @@ const Women = () => {
           })}
         </Row>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        OutfitAura
-      </Footer>
     </Layout>
   );
 };

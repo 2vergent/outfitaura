@@ -10,7 +10,7 @@ const cartSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  count: {
+  quantity: {
     type: Number,
   },
 });

@@ -86,7 +86,7 @@ const Header = ({ selectedMenu }) => {
       <Col span={1} align="right">
         <ShoppingCartOutlined
           onClick={() => navigate("/cart")}
-          className="cart-icon"
+          className={selectedMenu !== "0" ? "cart-icon" : "cart-icon-active"}
         />
       </Col>
       <Col span={1} align="right">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Card, Image, Row, Col } from "antd";
+import { formatIndianNumber } from "../utils/common";
 
 const { Meta } = Card;
 
@@ -14,7 +15,9 @@ const Trending = ({ trendingProducts }) => {
           <Col xs={24} sm={12} md={12} lg={6} align="middle">
             <Card
               hoverable
-              cover={<Image alt="example" src={product.image_path} />}
+              cover={
+                <Image alt="example" preview={false} src={product.image_path} />
+              }
               onClick={() =>
                 navigate("/product", {
                   state: { product: product, menu: "1" },
@@ -23,7 +26,7 @@ const Trending = ({ trendingProducts }) => {
             >
               <Meta
                 title={product.product_name}
-                description={"Rs." + `${product.price}`}
+                description={`₹${formatIndianNumber(product.price)}`}
               />
             </Card>
           </Col>
