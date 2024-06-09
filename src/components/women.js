@@ -1,9 +1,10 @@
 import "../assets/styles/homepage.css";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { Card, Image, Row, Col, Layout } from "antd";
 import HeaderComponent from "./header";
 import { getAllWomenProductsApi } from "../api/womenApi";
-import { useNavigate } from "react-router";
+import { formatIndianNumber } from "../utils/common";
 
 const { Meta } = Card;
 const { Header, Content } = Layout;
@@ -45,7 +46,7 @@ const Women = () => {
                 >
                   <Meta
                     title={product.product_name}
-                    description={"Rs." + `${product.price}`}
+                    description={`₹${formatIndianNumber(product.price)}`}
                   />
                 </Card>
               </Col>

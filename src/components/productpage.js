@@ -316,12 +316,12 @@ const ProductPage = () => {
               </Col>
               <Col>
                 <span style={{ fontSize: 24, fontWeight: 600 }}>
-                  ₹{product.price}
+                  ₹{formatIndianNumber(product.price)}
                 </span>
               </Col>
               <Col>
                 <span style={{ textDecoration: "line-through", fontSize: 13 }}>
-                  ₹{product.original_price}
+                  ₹{formatIndianNumber(product.original_price)}
                 </span>
               </Col>
               <Row>

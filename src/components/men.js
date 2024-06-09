@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Image, Row, Col, Layout } from "antd";
 import HeaderComponent from "./header";
 import { getAllMenProductsApi } from "../api/menApi";
+import { formatIndianNumber } from "../utils/common";
 
 const { Meta } = Card;
 const { Header, Content } = Layout;
@@ -45,7 +46,7 @@ const Men = () => {
                 >
                   <Meta
                     title={product.product_name}
-                    description={"Rs." + `${product.price}`}
+                    description={`₹${formatIndianNumber(product.price)}`}
                   />
                 </Card>
               </Col>
