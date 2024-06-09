@@ -328,6 +328,7 @@ const Cart = () => {
                           rootClassName="cart-image"
                           src={product.productDetail.image_path}
                           height={200}
+                          width={160}
                           style={{ borderRadius: 10 }}
                         />
                       }
@@ -387,7 +388,10 @@ const Cart = () => {
                                       modifyQuantity(product, "minus");
                                   }}
                                 />
-                                <Divider type="vertical" />
+                                <Divider
+                                  type="vertical"
+                                  style={{ marginTop: -7 }}
+                                />
                               </Col>
                               <Col span={1}>
                                 <span
@@ -402,7 +406,10 @@ const Cart = () => {
                                 </span>
                               </Col>
                               <Col>
-                                <Divider type="vertical" />
+                                <Divider
+                                  type="vertical"
+                                  style={{ marginTop: -7 }}
+                                />
                                 <PlusSquareFilled
                                   className="cart-plus"
                                   onClick={() =>
