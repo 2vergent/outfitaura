@@ -24,10 +24,6 @@ const Signup = () => {
   return (
     <div className="signup-screen">
       <div className="logo-signup">
-        <div className="logo-login-space">
-          {/* <img className="instaxLogoSignup" src={BogormLogo} /> */}
-        </div>
-        <Divider type="vertical" className="center-divide-signup" />
         <div className="signup-main">
           <Form
             name="normal_login"

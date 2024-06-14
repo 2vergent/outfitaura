@@ -60,7 +60,7 @@ const Header = ({ selectedMenu }) => {
           OutfitAura
         </span>
       </Col>
-      <Col xs={12} sm={13} md={14} lg={15} align="left">
+      <Col xs={13} sm={17} md={18} lg={19} align="left">
         <Menu
           id="homepage-menu"
           theme="dark"
@@ -73,14 +73,6 @@ const Header = ({ selectedMenu }) => {
               key.key === "1" ? "/home" : key.key === "2" ? "/men" : "/women"
             );
           }}
-        />
-      </Col>
-      <Col xs={4} sm={4} md={4} lg={4} align="right">
-        <Input
-          id="homepage-search"
-          prefix={<SearchOutlined style={{ color: "grey" }} />}
-          placeholder="Search"
-          allowClear
         />
       </Col>
       <Col span={1} align="right">
